@@ -26,4 +26,9 @@ public class ExtI18nConstants {
 	public static final String MODULE_BASE_URL = "/" + MODULE_ARTIFACT_ID;
 	
 	public static final String COMPONENT_LEGACY_CONTROLLER = MODULE_ARTIFACT_ID + "." + MODULE_NAME + "Controller";
+	
+	/*
+	 * Address Hierarchy
+	 */
+	public static final String GLOBAL_PROP_AH_I18N_SUPPORT = "addresshierarchy.i18nSupport";
 }

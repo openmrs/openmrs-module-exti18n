@@ -9,9 +9,13 @@
  */
 package org.openmrs.module.exti18n;
 
+import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.api.AdministrationService;
+import org.openmrs.api.context.Context;
 import org.openmrs.module.BaseModuleActivator;
+import org.openmrs.module.exti18n.api.AddressHierarchyI18nCache;
 
 /**
  * This class contains the logic that is run every time this module is either started or shutdown
@@ -24,14 +28,23 @@ public class ExtI18nActivator extends BaseModuleActivator {
 	 * @see #started()
 	 */
 	public void started() {
-		log.info("Started ExtI18n");
+		
+		// Ensuring that the i18n cache is not missing out on its enabling GP
+		{
+			String i18nEnabled = Context.getService(AdministrationService.class).getGlobalProperty(
+			    ExtI18nConstants.GLOBAL_PROP_AH_I18N_SUPPORT, new Boolean(false).toString());
+			AddressHierarchyI18nCache i18nCache = Context.getRegisteredComponent("addressHierarchyI18nCache",
+			    AddressHierarchyI18nCache.class);
+			i18nCache.setEnabled(BooleanUtils.toBooleanObject(i18nEnabled).booleanValue());
+		}
+		log.info("Started " + ExtI18nConstants.MODULE_NAME);
 	}
 	
 	/**
 	 * @see #shutdown()
 	 */
 	public void shutdown() {
-		log.info("Shutdown ExtI18n");
+		log.info("Stopped " + ExtI18nConstants.MODULE_NAME);
 	}
 	
 }

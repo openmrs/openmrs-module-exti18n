@@ -34,7 +34,6 @@
         </property>
         <property name="target">
             <bean class="org.openmrs.module.exti18n.api.impl.ExtI18nServiceImpl">
-                <property name="dao" ref="exti18n.ExtI18nDao" />
             </bean>
         </property>
         <property name="preInterceptors">
@@ -55,4 +54,20 @@
             </list>
         </property>
     </bean>
+
+    <!-- configure the GP listener -->
+    <bean id="ExtI18nGlobalPropertyListener" parent="openmrsEventListeners">
+        <property name="globalPropertyListeners">
+            <list value-type="org.openmrs.api.GlobalPropertyListener" merge="true">
+                <bean class="org.openmrs.module.exti18n.ExtI18nGlobalPropertyListener" />
+            </list>
+        </property>
+    </bean>
+
+    <bean id="addressHierarchyI18nCache" class="org.openmrs.module.exti18n.api.AddressHierarchyI18nCache"/>
+
+    <bean id="addressValuesHibernateInterceptor" class="org.openmrs.module.exti18n.api.AddressValuesHibernateInterceptor" primary="true"/>
+
+    <bean id="addressValuesAOPInterceptor" class="org.openmrs.module.exti18n.api.AddressValuesAOPInterceptor"/>
+    
 </beans>

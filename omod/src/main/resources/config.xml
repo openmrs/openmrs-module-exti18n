@@ -15,7 +15,7 @@
 	<!-- <updateURL>https://modules.openmrs.org/modules/download/@MODULE_ID@/update.rdf</updateURL> -->
 	<!-- /Base Module Properties -->
 	
-	<require_version>1.11.8</require_version>
+	<require_version>${openMRSVersion}</require_version>
 	
 	<!-- Extensions -->
 	<extension>
@@ -27,14 +27,20 @@
 		<aware_of_module>org.openmrs.module.legacyui</aware_of_module>
 	</aware_of_modules>
 	
-	
-	<!-- AOP
+	<!-- Spring AOP -->
 	<advice>
-		<point>org.openmrs.api.FormService</point>
-		<class>@MODULE_PACKAGE@.advice.DuplicateFormAdvisor</class>
+		<point>org.openmrs.api.PatientService</point>
+		<class>org.openmrs.module.addresshierarchy.i18n.AddressValuesAOPInterceptor</class>
 	</advice>
-	 /AOP -->
-	
+	<advice>
+		<point>org.openmrs.api.PersonService</point>
+		<class>org.openmrs.module.addresshierarchy.i18n.AddressValuesAOPInterceptor</class>
+	</advice>
+	<advice>
+		<point>org.openmrs.api.LocationService</point>
+		<class>org.openmrs.module.addresshierarchy.i18n.AddressValuesAOPInterceptor</class>
+	</advice>
+	<!-- /Spring AOP -->
 	
 	<!-- Required Privileges 
 	<privilege>
@@ -43,18 +49,13 @@
 	</privilege>
 	 /Required Privileges -->
 
-
-	<!-- Required Global Properties 
 	<globalProperty>
-		<property>@MODULE_ID@.someProperty</property>
-		<defaultValue></defaultValue>
+		<property>addresshierarchy.i18nSupport</property>
+		<defaultValue>true</defaultValue>
 		<description>
-			A description of the global property goes here.  The description
-			should explain enough for administrators to understand the purpose
-			and possible values for the global property.
+			Sets whether to leverage the reverse translation cache for address entries names and address fields values.
 		</description>
 	</globalProperty>
-	/Required Global Properties -->
 	
 	<!--
 	<dwr>
@@ -93,4 +94,3 @@
 	<!-- /Internationalization -->
 	
 </module>
-

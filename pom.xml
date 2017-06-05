@@ -62,6 +62,7 @@
 	</pluginRepositories>
 
     <properties>
-        <openmrsPlatformVersion>1.11.8</openmrsPlatformVersion>
+        <openMRSVersion>1.11.8</openMRSVersion>
+        <addresshierarchyVersion>2.11.0-SNAPSHOT</addresshierarchyVersion>
     </properties>
 </project>
