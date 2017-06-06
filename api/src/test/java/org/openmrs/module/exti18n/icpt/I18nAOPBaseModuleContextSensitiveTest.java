@@ -8,7 +8,7 @@ import org.openmrs.api.PatientService;
 import org.openmrs.api.PersonService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.AdvicePoint;
-import org.openmrs.module.addresshierarchy.i18n.I18nBaseModuleContextSensitiveTest;
+import org.openmrs.module.exti18n.api.impl.I18nBaseModuleContextSensitiveTest;
 import org.openmrs.module.exti18n.icpt.AddressValuesAOPInterceptor;
 
 /**

@@ -13,7 +13,7 @@ import org.junit.Test;
 import org.openmrs.PersonAddress;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.addresshierarchy.AddressHierarchyEntry;
-import org.openmrs.module.addresshierarchy.i18n.I18nBaseModuleContextSensitiveTest;
+import org.openmrs.module.exti18n.api.impl.I18nBaseModuleContextSensitiveTest;
 import org.openmrs.module.addresshierarchy.service.AddressHierarchyService;
 import org.openmrs.test.Verifies;
 

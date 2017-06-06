@@ -1,12 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.openmrs.maven.parents</groupId>
-        <artifactId>maven-parent-openmrs-module</artifactId>
-        <version>1.1.1</version>
-    </parent>
+	<parent>
+		<groupId>org.openmrs.maven.parents</groupId>
+		<artifactId>maven-parent-openmrs-module</artifactId>
+		<version>1.1.1</version>
+	</parent>
 
 	<groupId>org.openmrs.module</groupId>
 	<artifactId>exti18n</artifactId>
@@ -61,8 +61,27 @@
 		</pluginRepository>
 	</pluginRepositories>
 
-    <properties>
-        <openMRSVersion>1.11.8</openMRSVersion>
-        <addresshierarchyVersion>2.11.0-SNAPSHOT</addresshierarchyVersion>
-    </properties>
+	<properties>
+		<openMRSVersion>1.11.8</openMRSVersion>
+		<addresshierarchyVersion>2.11.0-SNAPSHOT</addresshierarchyVersion>
+	</properties>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<executions>
+						<execution>
+							<goals>
+								<goal>test-jar</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
 </project>
