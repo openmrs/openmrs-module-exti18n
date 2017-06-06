@@ -1,4 +1,4 @@
-package org.openmrs.module.exti18n.api;
+package org.openmrs.module.exti18n.api.impl;
 
 import java.lang.reflect.Field;
 import java.util.Locale;

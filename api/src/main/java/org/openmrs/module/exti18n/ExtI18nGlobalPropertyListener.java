@@ -3,7 +3,7 @@ package org.openmrs.module.exti18n;
 import org.apache.commons.lang.BooleanUtils;
 import org.openmrs.GlobalProperty;
 import org.openmrs.api.GlobalPropertyListener;
-import org.openmrs.module.exti18n.api.AddressHierarchyI18nCache;
+import org.openmrs.module.exti18n.api.impl.AddressHierarchyI18nCache;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class ExtI18nGlobalPropertyListener implements GlobalPropertyListener {

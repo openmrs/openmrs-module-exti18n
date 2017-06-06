@@ -55,6 +55,14 @@
         </property>
     </bean>
 
+    <bean id="addressHierarchyI18nCache" class="org.openmrs.module.exti18n.api.impl.AddressHierarchyI18nCache"/>
+
+
+    <!-- Interceptors (Spring + Hibernate) !! See also config.xml for Spring AOP !! -->
+    <bean id="addressValuesHibernateInterceptor" class="org.openmrs.module.exti18n.icpt.AddressValuesHibernateInterceptor" primary="true"/>
+    <bean id="addressValuesAOPInterceptor" class="org.openmrs.module.exti18n.icpt.AddressValuesAOPInterceptor"/>
+
+    
     <!-- configure the GP listener -->
     <bean id="ExtI18nGlobalPropertyListener" parent="openmrsEventListeners">
         <property name="globalPropertyListeners">
@@ -64,10 +72,4 @@
         </property>
     </bean>
 
-    <bean id="addressHierarchyI18nCache" class="org.openmrs.module.exti18n.api.AddressHierarchyI18nCache"/>
-
-    <bean id="addressValuesHibernateInterceptor" class="org.openmrs.module.exti18n.api.AddressValuesHibernateInterceptor" primary="true"/>
-
-    <bean id="addressValuesAOPInterceptor" class="org.openmrs.module.exti18n.api.AddressValuesAOPInterceptor"/>
-    
 </beans>

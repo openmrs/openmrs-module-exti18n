@@ -1,4 +1,4 @@
-package org.openmrs.module.exti18n.api;
+package org.openmrs.module.exti18n.icpt;
 
 import java.io.Serializable;
 import java.util.HashSet;
@@ -8,7 +8,7 @@ import org.hibernate.EmptyInterceptor;
 import org.hibernate.type.Type;
 import org.openmrs.Location;
 import org.openmrs.PersonAddress;
-import org.openmrs.module.exti18n.api.AddressHierarchyI18nCache;
+import org.openmrs.module.exti18n.api.impl.AddressHierarchyI18nCache;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**

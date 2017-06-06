@@ -1,4 +1,4 @@
-package org.openmrs.module.exti18n.api;
+package org.openmrs.module.exti18n.icpt;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 

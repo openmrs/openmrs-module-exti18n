@@ -1,4 +1,4 @@
-package org.openmrs.module.exti18n.api;
+package org.openmrs.module.exti18n.icpt;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -23,7 +23,7 @@ import org.openmrs.api.LocationService;
 import org.openmrs.api.PatientService;
 import org.openmrs.api.PersonService;
 import org.openmrs.api.context.Context;
-import org.openmrs.module.exti18n.api.AddressHierarchyI18nCache;
+import org.openmrs.module.exti18n.api.impl.AddressHierarchyI18nCache;
 
 /**
  * This intercepts the fetching of {@link PersonAddress} and {@link Location} entities, in order to

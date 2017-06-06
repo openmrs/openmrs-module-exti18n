@@ -1,4 +1,4 @@
-package org.openmrs.module.exti18n.api;
+package org.openmrs.module.exti18n.icpt;
 
 import org.aopalliance.aop.Advice;
 import org.junit.After;
@@ -9,6 +9,7 @@ import org.openmrs.api.PersonService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.AdvicePoint;
 import org.openmrs.module.addresshierarchy.i18n.I18nBaseModuleContextSensitiveTest;
+import org.openmrs.module.exti18n.icpt.AddressValuesAOPInterceptor;
 
 /**
  * Extend this class to run context sensitive tests with i18n enabled and with Spring AOP.
