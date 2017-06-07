@@ -11,7 +11,7 @@
  *
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
-package org.openmrs.module.exti18n.api.impl;
+package org.openmrs.module.exti18n.api;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -28,6 +28,7 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.TreeMap;
 
+import org.apache.commons.collections.MapUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -41,7 +42,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.MessageSource;
 import org.springframework.context.support.AbstractMessageSource;
-import org.springframework.stereotype.Component;
 
 /**
  * Registers the custom message source service
@@ -51,12 +51,11 @@ import org.springframework.stereotype.Component;
  *      /api-tests/src/test/java/org/openmrs/module/reporting/test/CustomMessageSource.java
  * @see https://talk.openmrs.org/t/address-hierarchy-support-for-i18n/10415/19?u=mksd
  */
-@Component
-public class CustomMessageSource extends AbstractMessageSource implements MutableMessageSource, ApplicationContextAware {
+public class TestsMessageSource extends AbstractMessageSource implements MutableMessageSource, ApplicationContextAware {
 	
-	protected static final Log log = LogFactory.getLog(CustomMessageSource.class);
+	protected static final Log log = LogFactory.getLog(TestsMessageSource.class);
 	
-	private Map<Locale, PresentationMessageMap> cache = null;
+	private Map<Locale, PresentationMessageMap> cache;
 	
 	private boolean showMessageCode = false;
 	
@@ -132,7 +131,9 @@ public class CustomMessageSource extends AbstractMessageSource implements Mutabl
 		Map<String, Locale> messageProperties = new LinkedHashMap<String, Locale>();
 		messageProperties.put("org/openmrs/module/addresshierarchy/include/addresshierarchy.properties", Locale.ENGLISH);
 		messageProperties.put("org/openmrs/module/addresshierarchy/include/addresshierarchy_fr.properties", Locale.FRENCH);
-		cache = new HashMap<Locale, PresentationMessageMap>();
+		if (MapUtils.isEmpty(cache)) {
+			cache = new HashMap<Locale, PresentationMessageMap>();
+		}
 		for (Map.Entry<String, Locale> entry : messageProperties.entrySet()) {
 			PresentationMessageMap pmm = new PresentationMessageMap(entry.getValue());
 			Properties messages = loadPropertiesFromClasspath(entry.getKey());

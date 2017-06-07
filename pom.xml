@@ -12,7 +12,7 @@
 	<artifactId>exti18n</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>Extended Internationalization module</name>
+	<name>Extended Internationalization</name>
 	<description>The OpenMRS Extended Internationalization Support module is an API-only module that intercepts phrases (names, descriptions, ...) out of objects returned by OpenMRS services, and localizes them. Additionally it provides internationalization support for the Address Hierarchy module.</description>
 
 	<developers>

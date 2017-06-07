@@ -5,22 +5,17 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.PersonAddress;
 import org.openmrs.api.context.Context;
 import org.openmrs.messagesource.MessageSourceService;
-import org.openmrs.module.addresshierarchy.AddressHierarchyEntry;
-import org.openmrs.module.addresshierarchy.AddressHierarchyLevel;
-import org.openmrs.module.addresshierarchy.service.AddressHierarchyService;
 
 /**
  * The reverse translation cache that allows to go back from translated words in the current locale
@@ -74,39 +69,43 @@ public class AddressHierarchyI18nCache {
 		return orderedAddressFields;
 	}
 	
+	public void setOrderedAddressFields(List<String> orderedAddressFields) {
+		this.orderedAddressFields = orderedAddressFields;
+	}
+	
 	/**
 	 * Initializes the reverse translation cache for a given locale.
 	 * 
 	 * @param locale
 	 */
-	public void init(Locale locale) {
-		
-		if (!isEnabled() || fullyCachedLocales.contains(locale)) {
-			return;
-		}
-		
-		AddressHierarchyService ahService = Context.getService(AddressHierarchyService.class);
-		List<AddressHierarchyLevel> orderedLevels = ahService.getOrderedAddressHierarchyLevels(false);
-		
-		if (CollectionUtils.isEmpty(orderedLevels)) {
-			log.warn("The Address Hierarchy reverse translation cache was not initialized because there are no mapped address hierarchy levels.");
-			return;
-		}
-		
-		for (AddressHierarchyLevel level : orderedLevels) {
-			orderedAddressFields.add(level.getAddressField().getName());
-		}
-		
-		ListIterator<AddressHierarchyLevel> iterator = orderedLevels.listIterator(orderedLevels.size());
-		// Iterate in reverse.
-		while (iterator.hasPrevious()) {
-			for (AddressHierarchyEntry entry : ahService.getAddressHierarchyEntriesByLevel(iterator.previous())) {
-				getMessage(entry.getName(), locale); // this fills the cache down from the entry level up to the top
-			}
-		}
-		
-		fullyCachedLocales.add(locale);
-	}
+	//	public void init(Locale locale) {
+	//		
+	//		if (!isEnabled() || fullyCachedLocales.contains(locale)) {
+	//			return;
+	//		}
+	//		
+	//		AddressHierarchyService ahService = Context.getService(AddressHierarchyService.class);
+	//		List<AddressHierarchyLevel> orderedLevels = ahService.getOrderedAddressHierarchyLevels(false);
+	//		
+	//		if (CollectionUtils.isEmpty(orderedLevels)) {
+	//			log.warn("The Address Hierarchy reverse translation cache was not initialized because there are no mapped address hierarchy levels.");
+	//			return;
+	//		}
+	//		
+	//		for (AddressHierarchyLevel level : orderedLevels) {
+	//			orderedAddressFields.add(level.getAddressField().getName());
+	//		}
+	//		
+	//		ListIterator<AddressHierarchyLevel> iterator = orderedLevels.listIterator(orderedLevels.size());
+	//		// Iterate in reverse.
+	//		while (iterator.hasPrevious()) {
+	//			for (AddressHierarchyEntry entry : ahService.getAddressHierarchyEntriesByLevel(iterator.previous())) {
+	//				getMessage(entry.getName(), locale); // this fills the cache down from the entry level up to the top
+	//			}
+	//		}
+	//		
+	//		fullyCachedLocales.add(locale);
+	//	}
 	
 	/**
 	 * This method translates a i18n message key based on the provided locale. From the outside if
@@ -154,9 +153,9 @@ public class AddressHierarchyI18nCache {
 		}
 		
 		String key = message;
-		if (!readOnly && !fullyCachedLocales.contains(Context.getLocale()) && !cache.containsKey(message.toLowerCase())) {
-			init(Context.getLocale());
-		}
+		//		if (!readOnly && !fullyCachedLocales.contains(Context.getLocale()) && !cache.containsKey(message.toLowerCase())) {
+		//			init(Context.getLocale());
+		//		}
 		if (cache.containsKey(message.toLowerCase())) {
 			key = cache.get(message.toLowerCase());
 		}
@@ -181,7 +180,7 @@ public class AddressHierarchyI18nCache {
 			return Collections.emptyList();
 		}
 		
-		init(Context.getLocale());
+		//		init(Context.getLocale());
 		
 		List<String> keys = new ArrayList<String>();
 		for (Map.Entry<String, String> pair : cache.entrySet()) {
@@ -212,7 +211,7 @@ public class AddressHierarchyI18nCache {
 		}
 		
 		final PersonAddress i18naddress = (PersonAddress) address.clone(); // TODO: We may drop this
-		init(Context.getLocale());
+		//		init(Context.getLocale());
 		
 		Map<String, String> addressAsMap = new HashMap<String, String>();
 		

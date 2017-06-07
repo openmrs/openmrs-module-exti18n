@@ -34,12 +34,12 @@
 			</exclusions>
 		</dependency>
 		
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>addresshierarchy-api</artifactId>
 			<version>${addresshierarchyVersion}</version>
-			<scope>provided</scope>
-		</dependency>
+			<scope>test</scope>
+		</dependency> -->
 	</dependencies>
 
 </project>
