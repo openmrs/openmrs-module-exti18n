@@ -16,6 +16,7 @@ package org.openmrs.module.exti18n.api;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Method;
+import java.nio.file.Paths;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -30,6 +31,7 @@ import java.util.TreeMap;
 
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.LocaleUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.messagesource.MessageSourceService;
@@ -42,6 +44,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.MessageSource;
 import org.springframework.context.support.AbstractMessageSource;
+
+import liquibase.util.file.FilenameUtils;
 
 /**
  * Registers the custom message source service
@@ -60,6 +64,10 @@ public class TestsMessageSource extends AbstractMessageSource implements Mutable
 	private boolean showMessageCode = false;
 	
 	public static final String GLOBAL_PROPERTY_SHOW_MESSAGE_CODES = "custommessage.showMessageCodes";
+	
+	protected Map<String, Locale> messageProperties = new LinkedHashMap<String, Locale>(); // resources to be cached
+	
+	private Set<String> cachedProperties = new HashSet<String>(); // flags the resources already cached
 	
 	/**
 	 * @see ApplicationContextAware#setApplicationContext(ApplicationContext)
@@ -125,16 +133,33 @@ public class TestsMessageSource extends AbstractMessageSource implements Mutable
 	}
 	
 	/**
+	 * Adds a message properties file to be added to the cache. The locale is parsed out of the file
+	 * name. Eg 'messages_fr.properties' --> 'fr'.
+	 * 
+	 * @param resourcePath The path to the message properties file.
+	 */
+	public void addMessageProperties(String resourcePath) {
+		String fileName = Paths.get(resourcePath).getFileName().toString();
+		String parts[] = FilenameUtils.getBaseName(fileName).split("_");
+		Locale locale = Locale.ENGLISH;
+		if (parts.length == 2) {
+			locale = LocaleUtils.toLocale(parts[1]);
+		}
+		messageProperties.put(resourcePath, locale);
+	}
+	
+	/**
 	 * Refreshes the cache, merged from the custom source and the parent source
 	 */
 	public synchronized void refreshCache() {
-		Map<String, Locale> messageProperties = new LinkedHashMap<String, Locale>();
-		messageProperties.put("org/openmrs/module/addresshierarchy/include/addresshierarchy.properties", Locale.ENGLISH);
-		messageProperties.put("org/openmrs/module/addresshierarchy/include/addresshierarchy_fr.properties", Locale.FRENCH);
+		
 		if (MapUtils.isEmpty(cache)) {
 			cache = new HashMap<Locale, PresentationMessageMap>();
 		}
 		for (Map.Entry<String, Locale> entry : messageProperties.entrySet()) {
+			if (cachedProperties.contains(entry.getKey())) {
+				continue;
+			}
 			PresentationMessageMap pmm = new PresentationMessageMap(entry.getValue());
 			Properties messages = loadPropertiesFromClasspath(entry.getKey());
 			for (String code : messages.stringPropertyNames()) {
@@ -144,6 +169,7 @@ public class TestsMessageSource extends AbstractMessageSource implements Mutable
 				pmm.put(code, new PresentationMessage(code, entry.getValue(), message, null));
 			}
 			cache.put(entry.getValue(), pmm);
+			cachedProperties.add(entry.getKey());
 		}
 	}
 	
