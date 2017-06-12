@@ -26,4 +26,7 @@
 		<!--  default properties must be set in the hibernate.default.properties -->
 	</bean>
 
+	<!-- A custom message source for unit tests -->
+	<bean id="exti18n.TestsMessageSource" class="org.openmrs.module.exti18n.api.TestsMessageSource"/>
+
 </beans>
