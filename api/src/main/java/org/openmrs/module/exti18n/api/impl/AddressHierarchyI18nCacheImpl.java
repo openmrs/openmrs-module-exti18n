@@ -21,13 +21,9 @@ public class AddressHierarchyI18nCacheImpl implements AddressHierarchyI18nCache 
 	
 	protected final Log log = LogFactory.getLog(getClass());
 	
-	private ReverseI18nCacheImpl i18nCache; // we just encapsulate a base cache
+	private ReverseI18nCacheImpl i18nCache = new ReverseI18nCacheImpl(); // we just encapsulate a base cache
 	
 	private List<String> orderedAddressFields = new ArrayList<String>();
-	
-	public void init() {
-		i18nCache = new ReverseI18nCacheImpl();
-	}
 	
 	@Override
 	public List<String> getOrderedAddressFields() {

@@ -57,7 +57,7 @@
 
     <!-- Reverse I18N caches -->
     <bean id="exti18n.reverseI18nCache" class="org.openmrs.module.exti18n.api.impl.ReverseI18nCacheImpl"/>
-    <bean id="exti18n.addressHierarchyI18nCache" class="org.openmrs.module.exti18n.api.impl.AddressHierarchyI18nCacheImpl" init-method="init"/>
+    <bean id="exti18n.addressHierarchyI18nCache" class="org.openmrs.module.exti18n.api.impl.AddressHierarchyI18nCacheImpl"/>
 
     <!-- Interceptors (Spring + Hibernate) !! See also config.xml for Spring AOP !! -->
     <bean id="exti18n.addressValuesHibernateInterceptor" class="org.openmrs.module.exti18n.icpt.AddressValuesHibernateInterceptor" primary="true"/>
