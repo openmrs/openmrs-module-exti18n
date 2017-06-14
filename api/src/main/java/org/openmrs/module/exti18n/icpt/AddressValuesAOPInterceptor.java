@@ -23,7 +23,8 @@ import org.openmrs.api.LocationService;
 import org.openmrs.api.PatientService;
 import org.openmrs.api.PersonService;
 import org.openmrs.api.context.Context;
-import org.openmrs.module.exti18n.api.impl.AddressHierarchyI18nCache;
+import org.openmrs.module.exti18n.ExtI18nConstants;
+import org.openmrs.module.exti18n.api.AddressHierarchyI18nCache;
 
 /**
  * This intercepts the fetching of {@link PersonAddress} and {@link Location} entities, in order to
@@ -38,7 +39,7 @@ public class AddressValuesAOPInterceptor implements MethodInterceptor {
 	@Override
 	public Object invoke(MethodInvocation invocation) throws Throwable {
 		
-		AddressHierarchyI18nCache i18nCache = Context.getRegisteredComponent("addressHierarchyI18nCache",
+		AddressHierarchyI18nCache i18nCache = Context.getRegisteredComponent(ExtI18nConstants.COMPONENT_AH_REVI18N,
 		    AddressHierarchyI18nCache.class);
 		final Object original = invocation.proceed();
 		if (original == null || !i18nCache.isEnabled()) {

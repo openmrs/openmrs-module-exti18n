@@ -28,7 +28,14 @@ public class ExtI18nConstants {
 	public static final String COMPONENT_LEGACY_CONTROLLER = MODULE_ARTIFACT_ID + "." + MODULE_NAME + "Controller";
 	
 	/*
+	 * Spring
+	 */
+	public static final String COMPONENT_REVI18N = MODULE_ARTIFACT_ID + ".reverseI18nCache";
+	
+	public static final String COMPONENT_AH_REVI18N = MODULE_ARTIFACT_ID + ".addressHierarchyI18nCache";
+	
+	/*
 	 * Address Hierarchy
 	 */
-	public static final String GLOBAL_PROP_AH_I18N_SUPPORT = "addresshierarchy.i18nSupport";
+	public static final String GLOBAL_PROP_REV_I18N_SUPPORT = MODULE_ARTIFACT_ID + ".reverseI18nSupport";
 }

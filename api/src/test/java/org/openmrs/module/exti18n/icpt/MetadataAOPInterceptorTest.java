@@ -6,8 +6,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openmrs.Location;
-import org.openmrs.Obs;
-import org.openmrs.Visit;
 import org.openmrs.api.LocationService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.exti18n.api.AOPModuleContextSensitiveTest;
@@ -31,42 +29,36 @@ public class MetadataAOPInterceptorTest extends AOPModuleContextSensitiveTest {
 	
 	protected void assertL10nLocation(Location location) {
 		Assert.assertEquals("Health center", location.getName());
-		Assert.assertEquals("This is a health centre location.", location.getDescription());
+		Assert.assertEquals("This is the description of a health centre.", location.getDescription());
 	}
 	
 	@Test
-	public void invoke_shouldLocalizeLocations() {
-
+	public void invoke_shouldL10nLocations() {
+		
 		// Setup
 		LocationService ls = Context.getLocationService();
 		String uuid = "b984a88e-371b-4cf1-8738-22b3441b71af";
 		Location location = new Location();
-		String name = "metadata.location.healthcenter.name";
+		String name = "metadata.healthcenter";
 		location.setUuid(uuid);
 		location.setName(name);
-		location.setDescription("metadata.location.healthcenter.description");
+		location.setDescription("metadata.healthcenter.description");
 		
 		// Replay
 		Context.setLocale(Locale.ENGLISH);
 		location = ls.saveLocation(location);
-
+		
 		// Verif l10n
 		assertL10nLocation(location);
-		location.setName("some random name that should not be persisted");
 		assertL10nLocation(ls.getLocationByUuid(uuid));
 		assertL10nLocation(ls.getLocation(name));
 		
-		// Verif that object can still be used
-		Visit visit = Context.getVisitService().getVisit(1);
-		visit.setLocation(location);
-		visit = Context.getVisitService().saveVisit(visit);
-		Obs obs = Context.getObsService().getObs(7);
-		obs.setLocation(location);
-		Context.getObsService().saveObs(obs, "test");
-		
 		// Verif that object can be resaved
-		location.setName("some.other.key");
+		location.setDescription("some.other.key");
 		location = ls.saveLocation(location);
-		Assert.assertEquals("some.other.key", location.getName());
+		Assert.assertEquals("some.other.key", location.getDescription());
+		
+		// And yet the original key can be used for fetching
+		Assert.assertNotNull(ls.getLocation(name));
 	}
 }

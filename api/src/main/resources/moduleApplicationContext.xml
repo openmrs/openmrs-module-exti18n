@@ -55,16 +55,18 @@
         </property>
     </bean>
 
-    <bean id="addressHierarchyI18nCache" class="org.openmrs.module.exti18n.api.impl.AddressHierarchyI18nCache"/>
-
+    <!-- Reverse I18N caches -->
+    <bean id="exti18n.reverseI18nCache" class="org.openmrs.module.exti18n.api.impl.ReverseI18nCacheImpl"/>
+    <bean id="exti18n.addressHierarchyI18nCache" class="org.openmrs.module.exti18n.api.impl.AddressHierarchyI18nCacheImpl" init-method="init"/>
 
     <!-- Interceptors (Spring + Hibernate) !! See also config.xml for Spring AOP !! -->
-    <bean id="addressValuesHibernateInterceptor" class="org.openmrs.module.exti18n.icpt.AddressValuesHibernateInterceptor" primary="true"/>
-    <bean id="addressValuesAOPInterceptor" class="org.openmrs.module.exti18n.icpt.AddressValuesAOPInterceptor"/>
-
+    <bean id="exti18n.addressValuesHibernateInterceptor" class="org.openmrs.module.exti18n.icpt.AddressValuesHibernateInterceptor" primary="true"/>
+    <bean id="exti18n.metadataHibernateInterceptor" class="org.openmrs.module.exti18n.icpt.MetadataHibernateInterceptor" primary="true"/>
+    <bean id="exti18n.addressValuesAOPInterceptor" class="org.openmrs.module.exti18n.icpt.AddressValuesAOPInterceptor"/>
+    <bean id="exti18n.metadataAOPInterceptor" class="org.openmrs.module.exti18n.icpt.MetadataAOPInterceptor"/>
     
     <!-- configure the GP listener -->
-    <bean id="ExtI18nGlobalPropertyListener" parent="openmrsEventListeners">
+    <bean id="exti18n.globalPropertyListener" parent="openmrsEventListeners">
         <property name="globalPropertyListeners">
             <list value-type="org.openmrs.api.GlobalPropertyListener" merge="true">
                 <bean class="org.openmrs.module.exti18n.ExtI18nGlobalPropertyListener" />

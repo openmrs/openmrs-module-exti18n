@@ -8,7 +8,7 @@ import org.hibernate.EmptyInterceptor;
 import org.hibernate.type.Type;
 import org.openmrs.Location;
 import org.openmrs.PersonAddress;
-import org.openmrs.module.exti18n.api.impl.AddressHierarchyI18nCache;
+import org.openmrs.module.exti18n.api.impl.AddressHierarchyI18nCacheImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -23,7 +23,7 @@ public class AddressValuesHibernateInterceptor extends EmptyInterceptor {
 	private static final long serialVersionUID = 442693627741326089L;
 	
 	@Autowired
-	private AddressHierarchyI18nCache i18nCache;
+	private AddressHierarchyI18nCacheImpl i18nCache;
 	
 	@Override
 	public boolean onSave(Object entity, Serializable id, Object[] state, String[] propertyNames, Type[] types) {
@@ -58,7 +58,7 @@ public class AddressValuesHibernateInterceptor extends EmptyInterceptor {
 				continue;
 			}
 			if (values[i] != null && values[i] instanceof String) {
-				values[i] = i18nCache.getMessageKey((String) values[i], true);
+				values[i] = i18nCache.getMessageKey((String) values[i]);
 			}
 		}
 	}
