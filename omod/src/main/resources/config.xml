@@ -54,10 +54,10 @@
 	 /Required Privileges -->
 
 	<globalProperty>
-		<property>addresshierarchy.i18nSupport</property>
+		<property>exti18n.reverseI18nSupport</property>
 		<defaultValue>true</defaultValue>
 		<description>
-			Sets whether to leverage the reverse translation cache for address entries names and address fields values.
+			Sets whether to leverage the reverse translation caches for address entries names, address fields values and supported metadata fields.
 		</description>
 	</globalProperty>
 	
