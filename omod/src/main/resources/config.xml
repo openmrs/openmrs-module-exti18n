@@ -28,22 +28,34 @@
 	</aware_of_modules>
 	
 	<!-- Spring AOP -->
-	<advice>
-		<point>org.openmrs.api.PatientService</point>
-		<class>org.openmrs.module.exti18n.icpt.AddressValuesAOPInterceptor</class>
-	</advice>
-	<advice>
-		<point>org.openmrs.api.PersonService</point>
-		<class>org.openmrs.module.exti18n.icpt.AddressValuesAOPInterceptor</class>
-	</advice>
-	<advice>
-		<point>org.openmrs.api.LocationService</point>
-		<class>org.openmrs.module.exti18n.icpt.AddressValuesAOPInterceptor</class>
-	</advice>
-	<advice>
-		<point>org.openmrs.api.LocationService</point>
-		<class>org.openmrs.module.exti18n.icpt.MetadataAOPInterceptor</class>
-	</advice>
+  <advice>
+    <point>org.openmrs.api.PatientService</point>
+    <class>org.openmrs.module.exti18n.icpt.AddressValuesAOPInterceptor</class>
+  </advice>
+  <advice>
+    <point>org.openmrs.api.PersonService</point>
+    <class>org.openmrs.module.exti18n.icpt.AddressValuesAOPInterceptor</class>
+  </advice>
+  <advice>
+    <point>org.openmrs.api.LocationService</point>
+    <class>org.openmrs.module.exti18n.icpt.AddressValuesAOPInterceptor</class>
+  </advice>
+  <advice>
+    <point>org.openmrs.api.LocationService</point>
+    <class>org.openmrs.module.exti18n.icpt.MetadataAOPInterceptor</class>
+  </advice>
+  <advice>
+    <point>org.openmrs.api.PatientService</point>
+    <class>org.openmrs.module.exti18n.icpt.MetadataAOPInterceptor</class>
+  </advice>
+  <advice>
+    <point>org.openmrs.api.PersonService</point>
+    <class>org.openmrs.module.exti18n.icpt.MetadataAOPInterceptor</class>
+  </advice>
+  <advice>
+    <point>org.openmrs.api.VisitService</point>
+    <class>org.openmrs.module.exti18n.icpt.MetadataAOPInterceptor</class>
+  </advice>
 	<!-- /Spring AOP -->
 	
 	<!-- Required Privileges 

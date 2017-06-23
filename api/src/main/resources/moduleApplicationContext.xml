@@ -64,6 +64,8 @@
     <bean id="exti18n.metadataHibernateInterceptor" class="org.openmrs.module.exti18n.icpt.MetadataHibernateInterceptor" primary="true"/>
     <bean id="exti18n.addressValuesAOPInterceptor" class="org.openmrs.module.exti18n.icpt.AddressValuesAOPInterceptor"/>
     <bean id="exti18n.metadataAOPInterceptor" class="org.openmrs.module.exti18n.icpt.MetadataAOPInterceptor"/>
+    <bean id="exti18n.metadataLocalizer" class="org.openmrs.module.exti18n.api.impl.MetadataLocalizer"/>
+    <bean id="exti18n.addressValuesLocalizer" class="org.openmrs.module.exti18n.api.impl.AddressValuesLocalizer"/>
     
     <!-- configure the GP listener -->
     <bean id="exti18n.globalPropertyListener" parent="openmrsEventListeners">

@@ -16,6 +16,11 @@ import org.openmrs.module.exti18n.api.ReverseI18nCache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
+/**
+ * Ensures that metadata objects are internationalized before being saved again.
+ * 
+ * @see MetadataAOPInterceptor
+ */
 public class MetadataHibernateInterceptor extends EmptyInterceptor {
 	
 	private static final long serialVersionUID = 8121430714632367748L;

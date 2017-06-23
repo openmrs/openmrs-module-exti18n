@@ -34,6 +34,10 @@ public class ExtI18nConstants {
 	
 	public static final String COMPONENT_AH_REVI18N = MODULE_ARTIFACT_ID + ".addressHierarchyI18nCache";
 	
+	public static final String COMPONENT_METADATA_LOCALIZER = MODULE_ARTIFACT_ID + ".metadataLocalizer";
+	
+	public static final String COMPONENT_ADDRESSVALUES_LOCALIZER = MODULE_ARTIFACT_ID + ".addressValuesLocalizer";
+	
 	/*
 	 * Address Hierarchy
 	 */

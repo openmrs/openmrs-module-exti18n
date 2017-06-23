@@ -27,13 +27,14 @@ public class MetadataHibernateInterceptorTest extends BaseModuleContextSensitive
 		source.addMessageProperties("org/openmrs/module/exti18n/include/metadata.properties");
 		source.refreshCache();
 		
-		i18nCache.getMessage("metadata.healthcenter", Locale.ENGLISH);
-		i18nCache.getMessage("metadata.healthcenter.description", Locale.ENGLISH);
+		// filling the cache a little
+		i18nCache.getMessage("metadata.healthCenter", Locale.ENGLISH);
+		i18nCache.getMessage("metadata.healthCenter.desc", Locale.ENGLISH);
 	}
 	
 	protected void assertI18nLocation(Location location) {
-		Assert.assertEquals("metadata.healthcenter", location.getName());
-		Assert.assertEquals("metadata.healthcenter.description", location.getDescription());
+		Assert.assertEquals("metadata.healthCenter", location.getName());
+		Assert.assertEquals("metadata.healthCenter.desc", location.getDescription());
 	}
 	
 	@Test
@@ -43,7 +44,7 @@ public class MetadataHibernateInterceptorTest extends BaseModuleContextSensitive
 		LocationService ls = Context.getLocationService();
 		String uuid = "b984a88e-371b-4cf1-8738-22b3441b71af";
 		Location location = new Location();
-		String name = "metadata.healthcenter";
+		String name = "metadata.healthCenter";
 		location.setUuid(uuid);
 		location.setName(name);
 		location.setDescription("This is the description of a health centre.");
