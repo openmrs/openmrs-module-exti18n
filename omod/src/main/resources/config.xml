@@ -28,34 +28,34 @@
 	</aware_of_modules>
 	
 	<!-- Spring AOP -->
-  <advice>
-    <point>org.openmrs.api.PatientService</point>
-    <class>org.openmrs.module.exti18n.icpt.AddressValuesAOPInterceptor</class>
-  </advice>
-  <advice>
-    <point>org.openmrs.api.PersonService</point>
-    <class>org.openmrs.module.exti18n.icpt.AddressValuesAOPInterceptor</class>
-  </advice>
-  <advice>
-    <point>org.openmrs.api.LocationService</point>
-    <class>org.openmrs.module.exti18n.icpt.AddressValuesAOPInterceptor</class>
-  </advice>
-  <advice>
-    <point>org.openmrs.api.LocationService</point>
-    <class>org.openmrs.module.exti18n.icpt.MetadataAOPInterceptor</class>
-  </advice>
-  <advice>
-    <point>org.openmrs.api.PatientService</point>
-    <class>org.openmrs.module.exti18n.icpt.MetadataAOPInterceptor</class>
-  </advice>
-  <advice>
-    <point>org.openmrs.api.PersonService</point>
-    <class>org.openmrs.module.exti18n.icpt.MetadataAOPInterceptor</class>
-  </advice>
-  <advice>
-    <point>org.openmrs.api.VisitService</point>
-    <class>org.openmrs.module.exti18n.icpt.MetadataAOPInterceptor</class>
-  </advice>
+	<advice>
+		<point>org.openmrs.api.PatientService</point>
+		<class>org.openmrs.module.exti18n.icpt.AddressValuesAOPInterceptor</class>
+	</advice>
+	<advice>
+		<point>org.openmrs.api.PersonService</point>
+		<class>org.openmrs.module.exti18n.icpt.AddressValuesAOPInterceptor</class>
+	</advice>
+	<advice>
+		<point>org.openmrs.api.LocationService</point>
+		<class>org.openmrs.module.exti18n.icpt.AddressValuesAOPInterceptor</class>
+	</advice>
+	<advice>
+		<point>org.openmrs.api.LocationService</point>
+		<class>org.openmrs.module.exti18n.icpt.MetadataAOPInterceptor</class>
+	</advice>
+	<advice>
+		<point>org.openmrs.api.PatientService</point>
+		<class>org.openmrs.module.exti18n.icpt.MetadataAOPInterceptor</class>
+	</advice>
+	<advice>
+		<point>org.openmrs.api.PersonService</point>
+		<class>org.openmrs.module.exti18n.icpt.MetadataAOPInterceptor</class>
+	</advice>
+	<advice>
+		<point>org.openmrs.api.VisitService</point>
+		<class>org.openmrs.module.exti18n.icpt.MetadataAOPInterceptor</class>
+	</advice>
 	<!-- /Spring AOP -->
 	
 	<!-- Required Privileges 
@@ -63,7 +63,7 @@
 		<name>Form Entry</name>
 		<description>Allows user to access Form Entry pages/functions</description>
 	</privilege>
-	 /Required Privileges -->
+	/Required Privileges -->
 
 	<globalProperty>
 		<property>exti18n.reverseI18nSupport</property>
@@ -89,18 +89,18 @@
 			]]>
 		</signatures>	
 	</dwr>
-	-->
-	
-	<!-- Servlets -->
+-->
+
+<!-- Servlets -->
 	<!-- Accessed through the url /pageContext()/moduleServlet/<moduleId>/<servlet-name> 
 	<servlet>
 		<servlet-name>formDownload</servlet-name>
 		<servlet-class>@MODULE_PACKAGE@.web.FormDownloadServlet</servlet-class>
 	</servlet>
-	-->
-	<!-- /Servlets -->
-	
-	
+-->
+<!-- /Servlets -->
+
+
 	<!-- Internationalization -->
 	<!-- All message codes should start with @MODULE_ID@.* -->
 	<messages>
@@ -108,5 +108,5 @@
 		<file>messages.properties</file>
 	</messages>
 	<!-- /Internationalization -->
-	
+
 </module>
