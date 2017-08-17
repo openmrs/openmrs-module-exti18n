@@ -9,7 +9,7 @@
 
 	<groupId>org.openmrs.module</groupId>
 	<artifactId>exti18n</artifactId>
-	<version>1.0.0</version>
+	<version>1.1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Extended Internationalization</name>
 	<description>The OpenMRS Extended Internationalization Support module is an API-only module that intercepts phrases (names, descriptions, ...) out of objects returned by OpenMRS services, and localizes them. Additionally it provides internationalization support for the Address Hierarchy module.</description>
@@ -29,7 +29,7 @@
 		<connection>scm:git:git@github.com:openmrs/openmrs-module-exti18n.git</connection>
 		<developerConnection>scm:git:git@github.com:openmrs/openmrs-module-exti18n.git</developerConnection>
 		<url>scm:git:git@github.com:openmrs/openmrs-module-exti18n.git</url>
-		<tag>1.0.0</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<modules>
