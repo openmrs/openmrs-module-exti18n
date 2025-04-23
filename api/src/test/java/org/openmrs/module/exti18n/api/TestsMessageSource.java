@@ -30,6 +30,7 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import org.apache.commons.collections.MapUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.LocaleUtils;
 import org.apache.commons.logging.Log;
@@ -44,8 +45,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.MessageSource;
 import org.springframework.context.support.AbstractMessageSource;
-
-import liquibase.util.file.FilenameUtils;
 
 /**
  * Registers the custom message source service
@@ -140,7 +139,7 @@ public class TestsMessageSource extends AbstractMessageSource implements Mutable
 	 */
 	public void addMessageProperties(String resourcePath) {
 		String fileName = Paths.get(resourcePath).getFileName().toString();
-		String parts[] = FilenameUtils.getBaseName(fileName).split("_");
+		String[] parts = FilenameUtils.getBaseName(fileName).split("_");
 		Locale locale = Locale.ENGLISH;
 		if (parts.length == 2) {
 			locale = LocaleUtils.toLocale(parts[1]);
