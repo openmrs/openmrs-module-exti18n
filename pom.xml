@@ -33,7 +33,7 @@
 	</modules>
 
 	<properties>
-		<openMRSVersion>2.7.3</openMRSVersion>
+		<openMRSVersion>2.7.9</openMRSVersion>
 		<javaCompilerVersion>21</javaCompilerVersion>
 	</properties>
 
