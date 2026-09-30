@@ -65,7 +65,7 @@ public class AddressHierarchyI18nCacheImpl implements AddressHierarchyI18nCache 
 	 *            current locale.
 	 * @return An address where all address fields are replaced with i18n messages keys, when
 	 *         possible.
-	 * @implNote This returns the same object instance as the input {@link PersonAddress} but
+	 * This returns the same object instance as the input {@link PersonAddress} but
 	 *           modified (internationalized).
 	 */
 	@Override
